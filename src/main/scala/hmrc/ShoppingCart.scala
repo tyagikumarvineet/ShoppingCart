@@ -23,7 +23,6 @@ object ShoppingCart {
 
   def buyOneAppleGetOneFree(shopItems: List[ShopItem]) = {
     val noOfApples = Utility.totalNoOfApples(shopItems)
-    val noOfOranges = Utility.totalNoOfOranges(shopItems)
 
     val noOfPaidApples = if(noOfApples % 2 == 0 ){
       noOfApples/2
@@ -31,20 +30,21 @@ object ShoppingCart {
       noOfApples/2 + 1
     }
 
-    noOfPaidApples * AppleCost/100.00 + noOfOranges * OrangeCost/100.00
+    noOfPaidApples * AppleCost/100.00
   }
 
   def buy3OrangesFor2(shopItems: List[ShopItem]) = {
-    val noOfApples = Utility.totalNoOfApples(shopItems)
     val noOfOranges = Utility.totalNoOfOranges(shopItems)
 
-    val noOfPaidOranges = if(noOfOranges % 3 == 0 ){
+    val noOfPaidOranges = if(noOfOranges < 3) {
+        noOfOranges
+      } else if(noOfOranges % 3 == 0 ){
       noOfOranges/3 * 2
     } else {
-      noOfOranges/3 + 1
+      (noOfOranges/3 * 2) + 1
     }
 
-    0.0
+    noOfPaidOranges * OrangeCost /100.00
   }
 
 }

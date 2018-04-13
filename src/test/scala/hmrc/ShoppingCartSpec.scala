@@ -33,11 +33,11 @@ class ShoppingCartSpec extends WordSpec with Matchers{
     }
 
     "return correct value of basket with Odd numbers of Apples with Oranges" in {
-      ShoppingCart.buyOneAppleGetOneFree(List(Apple, Orange, Apple, Apple)) shouldBe 1.45
+      ShoppingCart.buyOneAppleGetOneFree(List(Apple, Orange, Apple, Apple)) shouldBe 1.20
     }
 
     "return correct value of basket with Even numbers of Apples and even no of Oranges" in {
-      ShoppingCart.buyOneAppleGetOneFree(List(Apple, Orange, Orange, Apple, Apple, Apple)) shouldBe 1.70
+      ShoppingCart.buyOneAppleGetOneFree(List(Apple, Orange, Orange, Apple, Apple, Apple)) shouldBe 1.20
     }
 
   }
@@ -53,11 +53,11 @@ class ShoppingCartSpec extends WordSpec with Matchers{
     }
 
     "return correct value of basket with Odd numbers of Oranges with Apples" in {
-      ShoppingCart.buy3OrangesFor2(List(Orange, Apple, Orange, Orange)) shouldBe 1.10
+      ShoppingCart.buy3OrangesFor2(List(Orange, Apple, Orange, Orange)) shouldBe   0.50
     }
 
     "return correct value of basket with Even numbers of Oranges and even no of Apples" in {
-      ShoppingCart.buy3OrangesFor2(List(Apple, Orange, Orange, Apple, Apple, Apple)) shouldBe 2.90
+      ShoppingCart.buy3OrangesFor2(List(Apple, Orange, Orange, Apple, Apple, Apple)) shouldBe 0.50
     }
 
   }
