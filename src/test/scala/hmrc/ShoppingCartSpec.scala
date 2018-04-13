@@ -3,7 +3,7 @@ package hmrc
 import org.scalatest.{Matchers, WordSpec}
 
 class ShoppingCartSpec extends WordSpec with Matchers{
-  "ShoppingCart.checkOut" must {
+  "ShoppingCart.checkOut without offer" must {
 
     "return total value as 0 if the basket is empty" in {
       ShoppingCart.checkOut(List()) shouldBe "£" + 0.0
@@ -58,6 +58,30 @@ class ShoppingCartSpec extends WordSpec with Matchers{
 
     "return correct value of basket with Even numbers of Oranges and even no of Apples" in {
       ShoppingCart.buy3OrangesFor2(List(Apple, Orange, Orange, Apple, Apple, Apple)) shouldBe 0.50
+    }
+
+  }
+
+  "ShoppingCart.checkOut with offers" must {
+
+    "return correct value of basket with the offers" in {
+      ShoppingCart.checkOut(List(Apple, Orange, Orange, Orange, Apple, Apple, Apple), true) shouldBe "£" + 1.70
+    }
+
+    "return correct value of basket with only Apples with the offers" in {
+      ShoppingCart.checkOut(List(Apple, Apple, Apple, Apple, Apple), true) shouldBe "£" + 1.80
+    }
+
+    "return correct value of basket with only 5 Oranges with the offers" in {
+      ShoppingCart.checkOut(List(Orange, Orange, Orange, Orange, Orange), true) shouldBe "£" + 1.00
+    }
+
+    "return correct value of basket with only Oranges with the offers" in {
+      ShoppingCart.checkOut(List(Orange, Orange, Orange, Orange, Orange, Orange, Orange), true) shouldBe "£" + 1.25
+    }
+
+    "return basket value as 0 with offers when there is no Item" in {
+      ShoppingCart.checkOut(List(), true) shouldBe "£" + 0.0
     }
 
   }
